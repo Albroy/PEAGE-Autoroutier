@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-
+#include "peage.h"
 #include "voiture.h"
 
 int main(){

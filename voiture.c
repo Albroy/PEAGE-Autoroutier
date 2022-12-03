@@ -34,11 +34,20 @@ vehicule creer_vehicule(int classe){
 	}
 	srand(time(NULL));
 	v.passager=rand()%v.siege; // Génération aléatoire du nombre de passagers
+
+	int telepeage=rand()%10; // Génération aléatoire du télépéage
+	if (telepeage<4){
+		v.telepeage=true;
+	}
+	else{
+		v.telepeage=false;
+	}	
 	return v;
 }
 void afficher_vehicule(vehicule v){
 	printf("Nombre de passagers : %d\n",v.passager);
 	printf("Nombre de sièges : %d\n",v.siege);
-	printf("Classe : %d\n",v.classe);
+	printf("Classe : %d\n",v.classe);	
+	printf("Télépéage : %d\n",(int)v.telepeage);
 }
 
