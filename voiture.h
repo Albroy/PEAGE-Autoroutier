@@ -1,3 +1,6 @@
+#ifndef VOITURE_H
+#define VOITURE_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -13,3 +16,5 @@ typedef  struct vehicules { // Structure de base d'un véhicule
 
 vehicule creer_vehicule(int);
 void afficher_vehicule(vehicule);
+
+#endif /* VOITURE_H */
