@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -9,4 +10,11 @@
 #define NB_PDP 5// nb de postes de péage
 //sem_t semaphore[NB_PDP]; // tableau de sémaphores
 
+typedef struct vehicules_pdp{
+   vehicule v;
+   int pdp;
+}vehicule_pdp;
+
+
+void *peage(void *);
 

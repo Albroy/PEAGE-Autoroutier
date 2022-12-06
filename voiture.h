@@ -12,6 +12,7 @@ typedef  struct vehicules { // Structure de base d'un véhicule
 	int passager;
 	int classe;
     bool telepeage;
+	int id;
 }vehicule;
 
 vehicule creer_vehicule(int);
