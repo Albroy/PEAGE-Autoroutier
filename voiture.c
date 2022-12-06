@@ -1,11 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-
-
+#include <string.h>
 #include "voiture.h"
 
-
+char alphabet[]="AZERTYUIOPQSDFGHJKLMWXCVBN";
 
 
 vehicule creer_vehicule(int classe){
@@ -32,6 +31,9 @@ vehicule creer_vehicule(int classe){
 			v.siege=2;
 			break;
 	}
+
+	creer_immatriculation(&v.immatriculation);
+
 	srand(time(NULL));
 	v.passager=rand()%v.siege; // Génération aléatoire du nombre de passagers
 
@@ -49,5 +51,29 @@ void afficher_vehicule(vehicule v){
 	printf("Nombre de sièges : %d\n",v.siege);
 	printf("Classe : %d\n",v.classe);	
 	printf("Télépéage : %d\n",(int)v.telepeage);
+	printf("Immatriculation : %s\n",v.immatriculation);
 }
 
+void creer_immatriculation(char * matricule){
+
+	strcpy(matricule,"");
+
+	char c = 'A';
+	char str1[2] = {c , '\0'};
+
+	srand(time(NULL));
+	
+	for(int i=0;i<9;i++){
+		
+		if(!(i==2 || i==6)){
+			str1[0]=alphabet[rand()%9];
+			strcat(matricule,str1);
+		}else{
+			strcat(matricule,"-");
+		}
+		
+
+	}
+
+	
+}
