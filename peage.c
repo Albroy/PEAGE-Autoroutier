@@ -15,7 +15,8 @@ int nb_voiture_attente[NB_PDP];
 
 void Peage(int id){
     pthread_mutex_lock(&mutex[id]);
-    if(nb_voiture_attente>0){//si il y a des voitures en attente
+    printf("%d -> %d\n",nb_voiture_attente[id],id);
+    if(nb_voiture_attente[id]>0){//si il y a des voitures en attente
         printf("Le peage %d dit a une voiture de venir\n",id);
         pthread_cond_signal(&attente_voiture[id]);// on reveille la prochaine voiture
         printf("La voiture passe au peage %d\n",id);
@@ -29,7 +30,7 @@ void Peage(int id){
 }
 
 void Voiture(int id, int num_voiture){
-    int classe=rand()%6; // Génération aléatoire de la classe de la voiture
+    int classe=rand()%5; // Génération aléatoire de la classe de la voiture
     vehicule v=creer_vehicule(classe);
     //afficher_vehicule(v);
 
@@ -47,6 +48,7 @@ void Voiture(int id, int num_voiture){
 
 
 void *fct_peage(void * id){
+    nb_voiture_attente[(int)id]=0;
     while(1){
         Peage((int)id); 
         sleep(1);
@@ -54,9 +56,9 @@ void *fct_peage(void * id){
 }
 void *fct_voiture(void * arg){
     vehicule_pdp * vpdp = (vehicule_pdp *) arg;
+    int num = vpdp->num;
     int id = vpdp->id;
-    int pdp = vpdp->pdp;
-    Voiture(pdp,id);
+    Voiture(id,num);
     sleep (2);
 }
 
