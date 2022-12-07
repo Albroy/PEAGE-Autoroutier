@@ -32,7 +32,7 @@ int main(){
     }
 
     //attend la fin de toutes les threads voitures
-    for(num=0;num<NB_VOITURE+NB_PDP;num ++)
+    for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++)
             pthread_join(tid[num],NULL);
     free(v);
     /* liberation des ressources");*/
