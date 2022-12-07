@@ -30,10 +30,10 @@ void Peage(int id){
 }
 
 void Voiture(int id, int num_voiture){
-    int classe=rand()%5; // Génération aléatoire de la classe de la voiture
+    int classe=rand()%4+1; // Génération aléatoire de la classe de la voiture
     vehicule v=creer_vehicule(classe);
     //afficher_vehicule(v);
-
+    
     pthread_mutex_lock(&mutex[id]);
     nb_voiture_attente[id]++;
     pthread_cond_signal(&attente_peage[id]);//on reveille le peage
@@ -52,6 +52,7 @@ void *fct_peage(void * id){
     while(1){
         Peage((int)id); 
         sleep(1);
+		
     }    
 }
 void *fct_voiture(void * arg){
