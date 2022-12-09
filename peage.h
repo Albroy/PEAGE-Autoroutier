@@ -22,4 +22,5 @@ void  Peage(int);
 void *fct_peage(void *);
 void voiture(int, int);
 void *fct_voiture(void *);
+int temps_passage(int);
 #endif /* PEAGE_H */

@@ -7,7 +7,7 @@ int main(){
 
     pthread_t tid[NB_VOITURE+NB_PDP];
     int num;
-    //printf("test");
+
 
     // creation des threads peages
     for(num=0;num<NB_PDP;num ++){
@@ -16,10 +16,11 @@ int main(){
             exit(EXIT_FAILURE);  
         }    
     }
+    
     vehicule_pdp * v;
     v =malloc(sizeof(vehicule_pdp));
+   
     //creation des threads voitures
-    //sleep(1);
     for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++){
             v->num=num;
             v->id=rand()%NB_PDP;

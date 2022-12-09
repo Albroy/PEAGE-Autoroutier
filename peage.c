@@ -12,7 +12,7 @@ pthread_cond_t attente_peage[NB_PDP], attente_voiture[NB_PDP];
 int nb_voiture_attente[NB_PDP];
 
 
-
+//fonction peage
 void Peage(int id){
     pthread_mutex_lock(&mutex[id]);
     printf("%d -> %d\n",nb_voiture_attente[id],id);
@@ -29,6 +29,8 @@ void Peage(int id){
     pthread_mutex_unlock(&mutex[id]);
 }
 
+
+//fonction voiture
 void Voiture(int id, int num_voiture){
     int classe=rand()%4+1; // Génération aléatoire de la classe de la voiture
     vehicule v=creer_vehicule(classe);
@@ -39,6 +41,7 @@ void Voiture(int id, int num_voiture){
     pthread_cond_signal(&attente_peage[id]);//on reveille le peage
     printf("La voiture %d de classe %d attend au peage %d\n",num_voiture, v.classe,id);
     pthread_cond_wait(&attente_voiture[id],&mutex[id]);//on attend le peage
+    usleep(temps_passage(v.classe)*50000);
     printf("La voiture %d passe au peage %d\n",num_voiture,id);
     nb_voiture_attente[id]--;
     sleep(1);
@@ -46,7 +49,7 @@ void Voiture(int id, int num_voiture){
 }
 
 
-
+//fonction de creation des threads peages
 void *fct_peage(void * id){
     nb_voiture_attente[(int)id]=0;
     while(1){
@@ -55,6 +58,8 @@ void *fct_peage(void * id){
 		
     }    
 }
+
+//fonction de creation des threads voitures
 void *fct_voiture(void * arg){
     vehicule_pdp * vpdp = (vehicule_pdp *) arg;
     int num = vpdp->num;
@@ -62,4 +67,28 @@ void *fct_voiture(void * arg){
     Voiture(id,num);
     sleep (2);
 }
-
+//renvoie le temps de passage d'une voiture en fonction de sa taille (classe)
+int temps_passage(int classe){
+    int tps;
+    switch(classe){
+        case 1://leger
+            tps=1;
+            break;
+        case 2://intermediaire
+            tps=2;
+            break;
+        case 3://lourd 2 essieux
+            tps=3;
+            break;
+        case 4://lourd 3 essieux
+            tps=3;
+            break;
+        case 5://motos side-car et trikes
+            tps=1;
+            break;
+        default:
+            tps=0;
+            break;
+    }
+    return tps;
+}
