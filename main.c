@@ -36,7 +36,7 @@ int main(){
 
     for(int i=0;i<NB_VOITURE;i++){
 
-        pthread_join(thread_voiture,NULL);
+        pthread_join(thread_voiture[i],NULL);
         
         }  
 
