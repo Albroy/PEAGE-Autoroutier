@@ -12,10 +12,6 @@
 #define NB_VOITURE 6 // nb de véhicules
 #define NB_PDP 5// nb de postes de péage
 
-typedef struct vehicules_pdp{
-   int pdp_id;
-   vehicule v;
-}vehicule_pdp;
 
 
 void  Peage(int);

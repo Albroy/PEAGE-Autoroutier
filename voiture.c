@@ -13,16 +13,21 @@ vehicule creer_vehicule(int classe){
 		exit(-1);
 	}
 	vehicule v;
+	v.taxi=false;
+	v.critair=rand()%2;
 	v.classe=classe;
 	switch (classe){
 		case 1://véhicule léger
 			v.siege=4;
+			v.taxi=rand()%2;
 			break;
 		case 2://véhicule intermédiaire
 			v.siege=7;
+			v.taxi=rand()%2;
 			break;
 		case 3://poids lourds, autocars et autres véhicules à 2 essieux
 			v.siege=10;
+			
 			break;
 		case 4://poids lourds et autres véhicules à 3 essieux et plus
 			v.siege=15;
@@ -32,9 +37,9 @@ vehicule creer_vehicule(int classe){
 			break;
 	}
 
+	
 	creer_immatriculation(&v.immatriculation);
 
-	srand(time(NULL));
 	v.passager=rand()%v.siege; // Génération aléatoire du nombre de passagers
 
 	int telepeage=rand()%10; // Génération aléatoire du télépéage
@@ -52,6 +57,8 @@ void afficher_vehicule(vehicule v){
 	printf("Classe : %d\n",v.classe);	
 	printf("Télépéage : %d\n",(int)v.telepeage);
 	printf("Immatriculation : %s\n\n",v.immatriculation);
+	printf("Critair : %d\n",v.critair);
+	printf("Taxi : %d\n",v.taxi);
 }
 
 void creer_immatriculation(char * matricule){
@@ -61,7 +68,6 @@ void creer_immatriculation(char * matricule){
 	char c = 'A';
 	char str1[2] = {c , '\0'};
 
-	srand(time(NULL));
 	
 	for(int i=0;i<9;i++){
 		
