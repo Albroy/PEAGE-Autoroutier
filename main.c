@@ -5,38 +5,49 @@
 #include "voiture.h"
 int main(){
 
-    pthread_t tid[NB_VOITURE+NB_PDP];
-    int num;
-
+    pthread_t thread_voiture[NB_VOITURE];
+    pthread_t thread_pdp[NB_PDP];
 
     // creation des threads peages
-    for(num=0;num<NB_PDP;num ++){
-        if(pthread_create(tid+num,0,(void *(*)())fct_peage,(void*)num) !=0){
+    for(int i=0;i<NB_PDP;i++){
+        if(pthread_create(thread_pdp+i,0,fct_peage,(void*)i) !=0){
             fprintf(stderr,"ERREUR CREATION THREAD PEAGE\n");
             exit(EXIT_FAILURE);  
         }    
     }
-    
-    vehicule_pdp * v;
-    v =malloc(sizeof(vehicule_pdp));
-   
-    //creation des threads voitures
-    for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++){
-            v->num=num;
-            v->id=rand()%NB_PDP;
-            //ajouter un sleep random pour simuler le temps d'arrivée des voitures
-        
-        if(pthread_create(tid+num,0,fct_voiture,v) !=0){
-            fprintf(stderr,"ERREUR CREATION THREAD\n");
+
+    vehicule_pdp ** vpdp;
+    vpdp =(vehicule_pdp **)malloc(sizeof(vehicule_pdp)*NB_VOITURE);
+
+    for(int i=0;i<NB_VOITURE;i++){
+
+        vpdp[i] = malloc(sizeof(vehicule_pdp));
+
+        int classe=rand()%4+1; // Génération aléatoire de la classe de la voiture
+        vpdp[i]->v=creer_vehicule(classe);
+        vpdp[i]->pdp_id=rand()%NB_PDP;
+
+        if(pthread_create(thread_voiture+i,0,fct_voiture,vpdp[i]) !=0){
+            fprintf(stderr,"ERREUR CREATION THREAD PEAGE\n");
             exit(EXIT_FAILURE);  
-        }
+        }  
     }
 
-    //attend la fin de toutes les threads voitures
-    for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++)
-            pthread_join(tid[num],NULL);
-    free(v);
-    /* liberation des ressources");*/
+
+    for(int i=0;i<NB_VOITURE;i++){
+
+        pthread_join(thread_voiture[i],NULL);
+        
+        }  
+
+    for(int i=0;i<NB_VOITURE;i++){
+
+       free(vpdp[i]);
+        
+        }   
+        free(vpdp);
+
+
         return 0;
 }
 

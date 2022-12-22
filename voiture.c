@@ -51,7 +51,7 @@ void afficher_vehicule(vehicule v){
 	printf("Nombre de sièges : %d\n",v.siege);
 	printf("Classe : %d\n",v.classe);	
 	printf("Télépéage : %d\n",(int)v.telepeage);
-	printf("Immatriculation : %s\n",v.immatriculation);
+	printf("Immatriculation : %s\n\n",v.immatriculation);
 }
 
 void creer_immatriculation(char * matricule){
