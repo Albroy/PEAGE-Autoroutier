@@ -3,9 +3,22 @@
 #include <time.h>
 #include "peage.h"
 #include "voiture.h"
-int main(){
 
-    pthread_t thread_voiture[NB_VOITURE];
+
+int main(int argc, char **argv){
+
+    if(argc != 3){// nb peage ouverts et nb voiture
+        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage et un nb de voiture\n");
+        exit(EXIT_FAILURE);
+    }
+    if(atoi(argv[1])>NB_PDP){
+        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP);
+        exit(EXIT_FAILURE);
+    }
+   int nb_pdp=atoi(argv[1]);
+   int nb_voiture=atoi(argv[2]);
+
+    pthread_t thread_voiture[nb_voiture];
     pthread_t thread_pdp[NB_PDP];
 
 
@@ -22,7 +35,7 @@ int main(){
 
 
 
-    for(int i=0;i<NB_VOITURE;i++){
+    for(int i=0;i<nb_voiture;i++){
 
 
       
@@ -34,15 +47,11 @@ int main(){
     }
 
 
-    for(int i=0;i<NB_VOITURE;i++){
+    for(int i=0;i<nb_voiture;i++){
 
         pthread_join(thread_voiture[i],NULL);
         
         }  
-
-
-
-
         return 0;
 }
 

@@ -33,7 +33,7 @@ void Voiture(int idVehicule){
     vehicule v=creer_vehicule(rand()%4+1);
     int pdp_id=choix_pdp(v);
 
-    afficher_vehicule(v);
+    //afficher_vehicule(v);
     
     pthread_mutex_lock(&mutex[pdp_id]);
     nb_voiture_attente[pdp_id]++;
