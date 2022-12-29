@@ -41,12 +41,16 @@ void initialiser_peages(int N) {
   for (int i = 0; i < NB_PDP; i++) {
     state_peage[i] = true;
   }
-
+    int index;
   // Générer N entiers aléatoires compris entre 0 et NB_PDP-1
-  for (int i = 0; i < N; i++) {
-    int index = rand() % NB_PDP;
-    state_peage[index] = false;
+  while(N!=0){
+    index = rand() % NB_PDP;
+    if(state_peage[index]){
+        state_peage[index] = false;
+        N--;
+    }
   }
+  for (int i=0;i<NB_PDP;i++){printf("%d ,",state_peage[i]);}
 } 
 
 //fonction voiture
