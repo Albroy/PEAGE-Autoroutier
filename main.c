@@ -39,7 +39,7 @@ int main(int argc, char **argv){
             exit(EXIT_FAILURE);  
         }  
     }
-
+    printf("%f\n",moyenne_voit());
 
     for(int i=0;i<nb_voiture;i++){ // on attend la fin des threads voiture
         pthread_join(thread_voiture[i],NULL);

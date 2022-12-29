@@ -9,6 +9,7 @@
 
 #include "voiture.h"
 #define NB_PDP 15// nb de postes de péage
+#define NB_TEL NB_PDP/4// nb de télépeage
 
 extern bool stop_thread;
 
@@ -17,7 +18,7 @@ void  Peage(int);
 void *fct_peage(void *);
 void Voiture(int);
 void *fct_voiture(void *);
-int somme_voitureattente();
+float moyenne_voit();
 int choix_pdp(vehicule);
 
 
