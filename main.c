@@ -9,8 +9,8 @@ int main(int argc, char **argv){
         fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage et un nb de voiture\n");
         exit(EXIT_FAILURE);
     }
-    if(atoi(argv[1])>NB_PDP-2 ){
-        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP-2);
+    if(atoi(argv[1])>NB_PDP-1 ){
+        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP-1);
         exit(EXIT_FAILURE);
     }
    initialiser_peages(atoi(argv[1]));

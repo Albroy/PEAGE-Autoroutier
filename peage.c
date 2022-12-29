@@ -93,41 +93,57 @@ void *fct_voiture(void * arg){
 //fonction choix du poste de peage
 int choix_pdp(vehicule v){
     int peage=rand()%NB_PDP;
+
+    while(!state_peage[peage]){
+        peage=rand()%NB_PDP;
+    }
+
     bool hdp=moyenne_voit()>NB_PDP/2;
 
     if(hdp){
         printf("HEURE DE POINTE\n");
-        if(((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi) && state_peage[peage]){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
+        if(((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi)){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
             printf("On peut aller sur la voie de covoit\n");
         }else{
             if(peage!=NB_PDP-1){//si le peage n'est pas le dernier
                 if(state_peage[peage+1]){
                     peage++;//on ne peut pas aller sur la voie covoiturage 
-                }else{
-                    choix_pdp(v);
                 }
             }
         }
     }
-    if(v.telepeage && state_peage[peage]){
+
+    if(v.telepeage){
 
         return peage;
     }
     else{ 
 
-        if(peage<=NB_TEL ){//si le peage est un telepeage on le transforme en peage normal, il ne dépasse pas le nombre de peage car NB_TEL<NB_PDP/4
-            if(state_peage[peage+NB_TEL]){
-                return peage+NB_TEL;
-                }else{
-                    choix_pdp(v);
-                }
+    bool bool1=false;
+    bool bool2=false;
+
+    if (NB_TEL+peage < NB_PDP){
+        bool1 = true;
+    }
+
+    if(state_peage[peage+NB_TEL]){
+        bool2 = true;
+    }
+
+    while(!bool1 && !bool2){
+        peage=rand()%NB_PDP;
+
+        if (NB_TEL+peage < NB_PDP){
+            bool1 = true;
         }
 
-        if (state_peage[peage]){
-            return peage;
-        }else{
-            choix_pdp(v);
+        if(state_peage[peage+NB_TEL]){
+            bool2 = true;
         }
+
+    }
+
+        return peage;
         
     }
 }
