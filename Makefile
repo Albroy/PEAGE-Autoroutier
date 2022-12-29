@@ -1,7 +1,7 @@
 CC=gcc
 SRC= $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
-FALG= -W -Wall -pedantic -ansi -std=c99
+FALG= -W -Wall -Wextra -fsanitize=address -pedantic -ansi -std=c99
 
 main: $(OBJ)
 	@$(CC) -o $@ $^ $(FLAG)

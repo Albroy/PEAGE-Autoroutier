@@ -6,7 +6,6 @@
 
 
 int main(int argc, char **argv){
-
     if(argc != 3){// nb peage ouverts et nb voiture
         fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage et un nb de voiture\n");
         exit(EXIT_FAILURE);
@@ -35,11 +34,7 @@ int main(int argc, char **argv){
 
 
 
-    for(int i=0;i<nb_voiture;i++){
-
-
-      
-
+    for(int i=0;i<nb_voiture;i++){ // creation des threads voiture
         if(pthread_create(thread_voiture+i,0,fct_voiture,(void*)i) !=0){
             fprintf(stderr,"ERREUR CREATION THREAD PEAGE\n");
             exit(EXIT_FAILURE);  
@@ -47,11 +42,16 @@ int main(int argc, char **argv){
     }
 
 
-    for(int i=0;i<nb_voiture;i++){
-
+    for(int i=0;i<nb_voiture;i++){ // on attend la fin des threads voiture
         pthread_join(thread_voiture[i],NULL);
-        
         }  
-        return 0;
+    
+    for (int i = 0; i < NB_PDP; i++)
+    {
+        pthread_cancel(thread_pdp[i]);
+    }
+    
+    
+    return 0;
 }
 

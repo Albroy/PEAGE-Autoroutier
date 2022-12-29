@@ -29,6 +29,7 @@ void Peage(int id){
     pthread_mutex_unlock(&mutex[id]);
 }
 
+
 void Voiture(int idVehicule){
     vehicule v=creer_vehicule(rand()%4+1);
     int pdp_id=choix_pdp(v);
@@ -53,9 +54,9 @@ void *fct_peage(void * id){
     while(1){
         Peage((int)id); 
         sleep(1);
-		
     }    
 }
+
 void *fct_voiture(void * arg){
     Voiture((int)arg);
     sleep (2);
