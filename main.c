@@ -3,39 +3,55 @@
 #include <time.h>
 #include "peage.h"
 #include "voiture.h"
-int main(){
 
-    pthread_t tid[NB_VOITURE+NB_PDP];
-    int num;
-    //printf("test");
+
+int main(int argc, char **argv){
+    if(argc != 3){// nb peage ouverts et nb voiture
+        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage et un nb de voiture\n");
+        exit(EXIT_FAILURE);
+    }
+    if(atoi(argv[1])>NB_PDP){
+        fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP);
+        exit(EXIT_FAILURE);
+    }
+   int nb_pdp=atoi(argv[1]);
+   int nb_voiture=atoi(argv[2]);
+
+    pthread_t thread_voiture[nb_voiture];
+    pthread_t thread_pdp[NB_PDP];
+
+
+    srand(time(NULL));
+
 
     // creation des threads peages
-    for(num=0;num<NB_PDP;num ++){
-        if(pthread_create(tid+num,0,(void *(*)())fct_peage,(void*)num) !=0){
+    for(int i=0;i<NB_PDP;i++){
+        if(pthread_create(thread_pdp+i,0,fct_peage,(void*)i) !=0){
             fprintf(stderr,"ERREUR CREATION THREAD PEAGE\n");
             exit(EXIT_FAILURE);  
         }    
     }
-    vehicule_pdp * v;
-    v =malloc(sizeof(vehicule_pdp));
-    //creation des threads voitures
-    //sleep(1);
-    for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++){
-            v->num=num;
-            v->id=rand()%NB_PDP;
-            //ajouter un sleep random pour simuler le temps d'arrivée des voitures
-        
-        if(pthread_create(tid+num,0,fct_voiture,v) !=0){
-            fprintf(stderr,"ERREUR CREATION THREAD\n");
+
+
+
+    for(int i=0;i<nb_voiture;i++){ // creation des threads voiture
+        if(pthread_create(thread_voiture+i,0,fct_voiture,(void*)i) !=0){
+            fprintf(stderr,"ERREUR CREATION THREAD PEAGE\n");
             exit(EXIT_FAILURE);  
-        }
+        }  
     }
 
-    //attend la fin de toutes les threads voitures
-    for(num=NB_PDP;num<NB_VOITURE+NB_PDP;num ++)
-            pthread_join(tid[num],NULL);
-    free(v);
-    /* liberation des ressources");*/
-        return 0;
+
+    for(int i=0;i<nb_voiture;i++){ // on attend la fin des threads voiture
+        pthread_join(thread_voiture[i],NULL);
+        }  
+    
+    for (int i = 0; i < NB_PDP; i++)
+    {
+        pthread_cancel(thread_pdp[i]);
+    }
+    
+    
+    return 0;
 }
 

@@ -29,20 +29,22 @@ void Peage(int id){
     pthread_mutex_unlock(&mutex[id]);
 }
 
-void Voiture(int id, int num_voiture){
-    int classe=rand()%4+1; // Génération aléatoire de la classe de la voiture
-    vehicule v=creer_vehicule(classe);
+
+void Voiture(int idVehicule){
+    vehicule v=creer_vehicule(rand()%4+1);
+    int pdp_id=choix_pdp(v);
+
     //afficher_vehicule(v);
     
-    pthread_mutex_lock(&mutex[id]);
-    nb_voiture_attente[id]++;
-    pthread_cond_signal(&attente_peage[id]);//on reveille le peage
-    printf("La voiture %d de classe %d attend au peage %d\n",num_voiture, v.classe,id);
-    pthread_cond_wait(&attente_voiture[id],&mutex[id]);//on attend le peage
-    printf("La voiture %d passe au peage %d\n",num_voiture,id);
-    nb_voiture_attente[id]--;
+    pthread_mutex_lock(&mutex[pdp_id]);
+    nb_voiture_attente[pdp_id]++;
+    pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
+    printf("La voiture %s de classe %d attend au peage %d\n",v.immatriculation, v.classe,pdp_id);
+    pthread_cond_wait(&attente_voiture[pdp_id],&mutex[pdp_id]);//on attend le peage
+    printf("La voiture %s passe au peage %d\n",v.immatriculation,pdp_id);
+    nb_voiture_attente[pdp_id]--;
     sleep(1);
-    pthread_mutex_unlock(&mutex[id]);
+    pthread_mutex_unlock(&mutex[pdp_id]);
 }
 
 
@@ -52,14 +54,37 @@ void *fct_peage(void * id){
     while(1){
         Peage((int)id); 
         sleep(1);
-		
     }    
 }
+
 void *fct_voiture(void * arg){
-    vehicule_pdp * vpdp = (vehicule_pdp *) arg;
-    int num = vpdp->num;
-    int id = vpdp->id;
-    Voiture(id,num);
+    Voiture((int)arg);
     sleep (2);
 }
 
+int choix_pdp(vehicule v){
+    if(somme_voitureattente()>4*NB_PDP){//heure de pointe
+        if((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
+            printf("HEURE DE POINTE\n");
+            return 0;// on va sur la voix covoiturage 
+        }
+        if(v.telepeage){
+            return 1+rand()%(NB_PDP-1);//on va sur une voie au hasard mais pas la voie covoiturage
+        }
+        return (int)(NB_PDP/2)+1+rand()%(NB_PDP-1-NB_PDP/2);//on va sur une voie au hasard mais pas la voie covoiturage
+    }
+
+    if(v.telepeage){
+        return rand()%NB_PDP;//on va sur une voie au hasard 
+    }
+
+    return (int)(NB_PDP/2)+rand()%(NB_PDP-NB_PDP/2);//on va sur une voie au hasard mais pas les voie telepeage
+}
+
+int somme_voitureattente(){
+    int somme=0;
+    for(int i=0;i<NB_PDP;i++){
+        somme+=nb_voiture_attente[i];
+    }
+    return somme;
+}
