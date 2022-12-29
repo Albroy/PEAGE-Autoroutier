@@ -13,7 +13,9 @@ int main(int argc, char **argv){
         fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP);
         exit(EXIT_FAILURE);
     }
-   initializer(atoi(argv[1]));
+   initialiser_peages(atoi(argv[1]));
+   printf("%d\n",state_peage[0]);
+   printf("%d\n",atoi(argv[1]));
    int nb_voiture=atoi(argv[2]);
 
     pthread_t thread_voiture[nb_voiture];

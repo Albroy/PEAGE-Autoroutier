@@ -15,7 +15,8 @@ extern bool stop_thread;
 extern bool state_peage[NB_PDP];
 
 void reveiller_peage(int);
-void initializer(int);
+
+void initialiser_peages(int ); 
 void  Peage(int);
 void *fct_peage(void *);
 void Voiture(int);

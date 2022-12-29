@@ -36,6 +36,19 @@ void reveiller_peage(int id){
     }
 }
 
+void initialiser_peages(int N) {
+  // Initialiser tous les booléens à true
+  for (int i = 0; i < NB_PDP; i++) {
+    state_peage[i] = true;
+  }
+
+  // Générer N entiers aléatoires compris entre 0 et NB_PDP-1
+  for (int i = 0; i < N; i++) {
+    int index = rand() % NB_PDP;
+    state_peage[index] = false;
+  }
+} 
+
 //fonction voiture
 void Voiture(int idVehicule){
     vehicule v=creer_vehicule(rand()%4+1);
