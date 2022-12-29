@@ -82,24 +82,6 @@ void *fct_peage(void * id){
     pthread_exit(NULL);
 }
 
-void initializer(int j){
-
-    int h=j;
-
-    bool r = rand()%2;
-
-    for(int i; i<NB_PDP; i++){
-        r = rand()%2;
-        if(h!=0 && r){
-            h--;
-            state_peage[i]=false;
-        }else{
-            state_peage[i]=true;
-        }
-        
-    }
-
-}
 
 //fonction thread voiture
 void *fct_voiture(void * arg){
