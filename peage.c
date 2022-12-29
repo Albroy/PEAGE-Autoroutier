@@ -73,29 +73,35 @@ void *fct_voiture(void * arg){
 
 //fonction choix du poste de peage
 int choix_pdp(vehicule v){
-    if(somme_voitureattente()>4*NB_PDP){//heure de pointe
+    int peage=rand()%NB_PDP;
+    bool hdp=moyenne_voit()>NB_PDP/2;
+
+    if(hdp){
+        printf("HEURE DE POINTE\n");
         if((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
-            printf("HEURE DE POINTE\n");
-            return 0;// on va sur la voix covoiturage 
+            printf("On peut aller sur la voie de covoit\n");
+        }else{
+            if(peage!=NB_PDP-1){//si le peage n'est pas le dernier
+                peage++; //on ne peut pas aller sur la voie covoiturage 
+            }
         }
-        if(v.telepeage){
-            return 1+rand()%(NB_PDP-1);//on va sur une voie au hasard mais pas la voie covoiturage
-        }
-        return (int)(NB_PDP/2)+1+rand()%(NB_PDP-1-NB_PDP/2);//on va sur une voie au hasard mais pas la voie covoiturage
     }
-
     if(v.telepeage){
-        return rand()%NB_PDP;//on va sur une voie au hasard 
+        return peage;
     }
-
-    return (int)(NB_PDP/2)+rand()%(NB_PDP-NB_PDP/2);//on va sur une voie au hasard mais pas les voie telepeage
+    else{
+        if(peage<NB_TEL){//si le peage est un telepeage on le transforme en peage normal, il ne dépasse pas le nombre de peage car NB_TEL<NB_PDP/4
+            return peage+NB_TEL;
+        }
+    }
 }
+    
 
-//fonction somme des voitures en attente
-int somme_voitureattente(){
+//fonction moyenne des voitures en attente
+float moyenne_voit(){
     int somme=0;
     for(int i=0;i<NB_PDP;i++){
         somme+=nb_voiture_attente[i];
     }
-    return somme;
+    return (float)somme/NB_PDP;
 }
