@@ -101,7 +101,11 @@ int choix_pdp(vehicule v){
             printf("On peut aller sur la voie de covoit\n");
         }else{
             if(peage!=NB_PDP-1){//si le peage n'est pas le dernier
-                peage++; //on ne peut pas aller sur la voie covoiturage 
+                if(state_peage[peage+1]){
+                    peage++;//on ne peut pas aller sur la voie covoiturage 
+                }else{
+                    choix_pdp(v);
+                }
             }
         }
     }
