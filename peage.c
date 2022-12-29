@@ -2,7 +2,6 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #include "peage.h"
 #include "voiture.h"
 
@@ -10,9 +9,9 @@ pthread_mutex_t mutex[NB_PDP];
 pthread_cond_t attente_peage[NB_PDP], attente_voiture[NB_PDP];
 
 int nb_voiture_attente[NB_PDP];
+bool stop_thread=false;
 
-
-
+//fonction peage
 void Peage(int id){
     pthread_mutex_lock(&mutex[id]);
     printf("%d -> %d\n",nb_voiture_attente[id],id);
@@ -29,13 +28,18 @@ void Peage(int id){
     pthread_mutex_unlock(&mutex[id]);
 }
 
+//fonction pour reveiller le peage dans le cas ou il n'y a plus de voiture
+void reveiller_peage(int id){
+    if(stop_thread){
+        pthread_cond_signal(&attente_peage[id]);
+    }
+}
 
+//fonction voiture
 void Voiture(int idVehicule){
     vehicule v=creer_vehicule(rand()%4+1);
     int pdp_id=choix_pdp(v);
-
     //afficher_vehicule(v);
-    
     pthread_mutex_lock(&mutex[pdp_id]);
     nb_voiture_attente[pdp_id]++;
     pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
@@ -48,20 +52,26 @@ void Voiture(int idVehicule){
 }
 
 
-
+//fonction thread peage
 void *fct_peage(void * id){
     nb_voiture_attente[(int)id]=0;
-    while(1){
+    bool running=true;
+    while(running){
         Peage((int)id); 
         sleep(1);
+        running=!stop_thread;
     }    
+    pthread_exit(NULL);
 }
 
+//fonction thread voiture
 void *fct_voiture(void * arg){
     Voiture((int)arg);
     sleep (2);
+    pthread_exit(NULL);
 }
 
+//fonction choix du poste de peage
 int choix_pdp(vehicule v){
     if(somme_voitureattente()>4*NB_PDP){//heure de pointe
         if((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
@@ -81,6 +91,7 @@ int choix_pdp(vehicule v){
     return (int)(NB_PDP/2)+rand()%(NB_PDP-NB_PDP/2);//on va sur une voie au hasard mais pas les voie telepeage
 }
 
+//fonction somme des voitures en attente
 int somme_voitureattente(){
     int somme=0;
     for(int i=0;i<NB_PDP;i++){

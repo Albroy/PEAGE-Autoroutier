@@ -1,6 +1,5 @@
 #ifndef PEAGE_H
 #define PEAGE_H
-#include<stdbool.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -9,13 +8,19 @@
 #include<semaphore.h>
 
 #include "voiture.h"
-#define NB_PDP 5// nb de postes de péage
+#define NB_PDP 15// nb de postes de péage
 
+extern bool stop_thread;
 
-
+void reveiller_peage(int);
 void  Peage(int);
 void *fct_peage(void *);
-void voiture(int, int);
+void Voiture(int);
 void *fct_voiture(void *);
-int temps_passage(int);
+int somme_voitureattente();
+int choix_pdp(vehicule);
+
+
+
+
 #endif /* PEAGE_H */
