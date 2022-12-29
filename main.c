@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <time.h>
 #include "peage.h"
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wint-to-pointer-cast" //pour les warnings de conversion de int en pointeur
 
 int main(int argc, char **argv){
     if(argc != 3){// nb peage ouverts et nb voiture
@@ -55,5 +56,8 @@ int main(int argc, char **argv){
         }
     printf("Bonne terminaison\n");
     return 0;
+
+
 }
+#pragma GCC diagnostic pop
 

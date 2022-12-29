@@ -4,6 +4,9 @@
 #include <string.h>
 #include "voiture.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wincompatible-pointer-types" //pour les warnings de conversion de int en pointeur
+
 char alphabet[]="AZERTYUIOPQSDFGHJKLMWXCVBN";
 
 
@@ -83,3 +86,4 @@ void creer_immatriculation(char * matricule){
 
 	
 }
+#pragma GCC diagnostic pop

@@ -5,12 +5,16 @@
 #include "peage.h"
 #include "voiture.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpointer-to-int-cast" //pour les warnings de conversion de pointeur en int
+
 pthread_mutex_t mutex[NB_PDP];
 pthread_cond_t attente_peage[NB_PDP], attente_voiture[NB_PDP];
 
 int nb_voiture_attente[NB_PDP];
 bool stop_thread=false;
 bool state_peage[NB_PDP];
+
 
 //fonction peage
 void Peage(int id){
@@ -157,3 +161,5 @@ float moyenne_voit(){
     }
     return (float)somme/NB_PDP;
 }
+
+#pragma GCC diagnostic pop
