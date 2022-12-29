@@ -13,7 +13,7 @@ int main(int argc, char **argv){
         fprintf(stderr,"ERREUR ARGUMENT\n Veuillez essayer avec un nb de peage inferieur ou egal a %d\n",NB_PDP);
         exit(EXIT_FAILURE);
     }
-   int nb_pdp=atoi(argv[1]);
+   initializer(atoi(argv[1]));
    int nb_voiture=atoi(argv[2]);
 
     pthread_t thread_voiture[nb_voiture];
@@ -47,7 +47,7 @@ int main(int argc, char **argv){
 
     stop_thread=true;
 
-    for(int i=0;i<nb_pdp;i++){
+    for(int i=0;i<NB_PDP;i++){
         reveiller_peage(i);//on reveille les threads peage endormis
         pthread_join(thread_pdp[i],NULL); // on attend la fin des threads peage
         }

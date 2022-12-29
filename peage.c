@@ -10,6 +10,7 @@ pthread_cond_t attente_peage[NB_PDP], attente_voiture[NB_PDP];
 
 int nb_voiture_attente[NB_PDP];
 bool stop_thread=false;
+bool state_peage[NB_PDP];
 
 //fonction peage
 void Peage(int id){
@@ -64,6 +65,25 @@ void *fct_peage(void * id){
     pthread_exit(NULL);
 }
 
+void initializer(int j){
+
+    int h=j;
+
+    bool r = rand()%2;
+
+    for(int i; i<NB_PDP; i++){
+        r = rand()%2;
+        if(h!=0 && r){
+            h--;
+            state_peage[i]=false;
+        }else{
+            state_peage[i]=true;
+        }
+        
+    }
+
+}
+
 //fonction thread voiture
 void *fct_voiture(void * arg){
     Voiture((int)arg);
@@ -78,7 +98,7 @@ int choix_pdp(vehicule v){
 
     if(hdp){
         printf("HEURE DE POINTE\n");
-        if((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
+        if(((v.passager>=2 && v.classe!=4 )|| v.critair || v.taxi) && state_peage[peage]){//si la voiture a plus de 2 passagers et lourd ou est un taxi ou est critair
             printf("On peut aller sur la voie de covoit\n");
         }else{
             if(peage!=NB_PDP-1){//si le peage n'est pas le dernier
@@ -86,13 +106,26 @@ int choix_pdp(vehicule v){
             }
         }
     }
-    if(v.telepeage){
+    if(v.telepeage && state_peage[peage]){
+
         return peage;
     }
-    else{
-        if(peage<NB_TEL){//si le peage est un telepeage on le transforme en peage normal, il ne dépasse pas le nombre de peage car NB_TEL<NB_PDP/4
-            return peage+NB_TEL;
+    else{ 
+
+        if(peage<=NB_TEL ){//si le peage est un telepeage on le transforme en peage normal, il ne dépasse pas le nombre de peage car NB_TEL<NB_PDP/4
+            if(state_peage[peage+NB_TEL]){
+                return peage+NB_TEL;
+                }else{
+                    choix_pdp(v);
+                }
         }
+
+        if (state_peage[peage]){
+            return peage;
+        }else{
+            choix_pdp(v);
+        }
+        
     }
 }
     

@@ -12,8 +12,10 @@
 #define NB_TEL NB_PDP/4// nb de télépeage
 
 extern bool stop_thread;
+extern bool state_peage[NB_PDP];
 
 void reveiller_peage(int);
+void initializer(int);
 void  Peage(int);
 void *fct_peage(void *);
 void Voiture(int);
