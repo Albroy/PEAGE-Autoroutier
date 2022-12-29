@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <time.h>
 #include "peage.h"
-#include "voiture.h"
 
 
 int main(int argc, char **argv){
@@ -45,13 +44,14 @@ int main(int argc, char **argv){
     for(int i=0;i<nb_voiture;i++){ // on attend la fin des threads voiture
         pthread_join(thread_voiture[i],NULL);
         }  
-    
-    for (int i = 0; i < NB_PDP; i++)
-    {
-        pthread_cancel(thread_pdp[i]);
-    }
-    
-    
+
+    stop_thread=true;
+
+    for(int i=0;i<nb_pdp;i++){
+        reveiller_peage(i);//on reveille les threads peage endormis
+        pthread_join(thread_pdp[i],NULL); // on attend la fin des threads peage
+        }
+    printf("Bonne terminaison\n");
     return 0;
 }
 
