@@ -19,7 +19,7 @@ bool state_peage[NB_PDP];
 //fonction peage
 void Peage(int id){
     pthread_mutex_lock(&mutex[id]);
-    printf("%d -> %d\n",nb_voiture_attente[id],id);
+    //printf("%d -> %d\n",nb_voiture_attente[id],id);
     if(nb_voiture_attente[id]>0){//si il y a des voitures en attente
         printf("Le peage %d dit a une voiture de venir\n",id);
         pthread_cond_signal(&attente_voiture[id]);// on reveille la prochaine voiture
@@ -54,7 +54,8 @@ void initialiser_peages(int N) {
         N--;
     }
   }
-  for (int i=0;i<NB_PDP;i++){printf("%d ,",state_peage[i]);}
+  for (int i=0;i<NB_PDP;i++){printf("|%d",state_peage[i]);}
+    printf("|\n");
 } 
 
 //fonction voiture
@@ -65,9 +66,9 @@ void Voiture(int idVehicule){
     pthread_mutex_lock(&mutex[pdp_id]);
     nb_voiture_attente[pdp_id]++;
     pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
-    printf("La voiture %s de classe %d attend au peage %d\n",v.immatriculation, v.classe,pdp_id);
+    printf("La voiture %s (%d) de classe %d attend au peage %d\n",v.immatriculation,idVehicule, v.classe,pdp_id);
     pthread_cond_wait(&attente_voiture[pdp_id],&mutex[pdp_id]);//on attend le peage
-    printf("La voiture %s passe au peage %d\n",v.immatriculation,pdp_id);
+    printf("La voiture %s (%d) passe au peage %d\n",v.immatriculation,idVehicule,pdp_id);
     nb_voiture_attente[pdp_id]--;
     sleep(1);
     pthread_mutex_unlock(&mutex[pdp_id]);
@@ -128,22 +129,24 @@ int choix_pdp(vehicule v){
 
     if (NB_TEL+peage < NB_PDP){
         bool1 = true;
+        if(state_peage[peage+NB_TEL]){
+            bool2 = true;
+        }
     }
+    
 
-    if(state_peage[peage+NB_TEL]){
-        bool2 = true;
-    }
 
     while(!bool1 && !bool2){
         peage=rand()%NB_PDP;
 
         if (NB_TEL+peage < NB_PDP){
             bool1 = true;
+            if(state_peage[peage+NB_TEL]){
+                bool2 = true;
+            }
         }
 
-        if(state_peage[peage+NB_TEL]){
-            bool2 = true;
-        }
+       
 
     }
 

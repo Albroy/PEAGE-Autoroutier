@@ -15,8 +15,7 @@ int main(int argc, char **argv){
         exit(EXIT_FAILURE);
     }
    initialiser_peages(atoi(argv[1]));
-   printf("%d\n",state_peage[0]);
-   printf("%d\n",atoi(argv[1]));
+   //printf("%d\n",atoi(argv[1]));
    int nb_voiture=atoi(argv[2]);
 
     pthread_t thread_voiture[nb_voiture];
@@ -42,7 +41,7 @@ int main(int argc, char **argv){
             exit(EXIT_FAILURE);  
         }  
     }
-    printf("%f\n",moyenne_voit());
+    //printf("%f\n",moyenne_voit());
 
     for(int i=0;i<nb_voiture;i++){ // on attend la fin des threads voiture
         pthread_join(thread_voiture[i],NULL);
