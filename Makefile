@@ -4,7 +4,7 @@ OBJ=$(SRC:.c=.o)
 FLAG= -W -Wall -Wextra -pedantic -std=c99 
 .DEFAULT_GOAL := all
 
-AddressSanitizer=-fsanitize=address \
+ADDRESS_FLAG=-fsanitize=address \
 				 -fno-omit-frame-pointer
 
 THREAD_FLAG=-fsanitize=thread \
@@ -39,18 +39,30 @@ all: main
 	@echo "classic"
 
 ifneq (,$(shell find /usr -name "libubsan.so" 2>/dev/null))
-ThreadSA: main
-	FLAG=$(THREAD_FLAG)
-	@echo "THREAD_FLAG"
-UndefinedBehaviourSA: main
-	FLAG=$(UNDEFINED_FLAG)
+UndefinedBehaviour: $(OBJ)
+	@$(CC) -o $@ $^ $(UNDEFINED_FLAG)
+	@if [ ! -d ./exec ] || [ ! -d ./obj ]; then mkdir exec obj; fi
+	@mv $@ exec/
+	@mv $(OBJ) obj/
 	@echo "UNDEFINED_FLAG"
 endif
 
+ifneq (,$(shell find /usr -name "libtsan.so" 2>/dev/null))
+Thread: $(OBJ)
+	@$(CC) -o $@ $^ $(THREAD_FLAG)
+	@if [ ! -d ./exec ] || [ ! -d ./obj ]; then mkdir exec obj; fi
+	@mv $@ exec/
+	@mv $(OBJ) obj/
+	@echo "THREAD_FLAG"
+endif
+
 ifneq (,$(shell find /usr -name "libasan.so" 2>/dev/null))
-AddressSA: main
-	FLAG=$(AddressSanitizer)
-	@echo "AddressSanitizer"
+Address: $(OBJ)
+	@$(CC) -o $@ $^ $(ADDRESS_FLAG)
+	@if [ ! -d ./exec ] || [ ! -d ./obj ]; then mkdir exec obj; fi
+	@mv $@ exec/
+	@mv $(OBJ) obj/
+	@echo "ADDRESS_FLAG"
 endif
 
 main: $(OBJ)
