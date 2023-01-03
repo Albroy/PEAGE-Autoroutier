@@ -54,6 +54,9 @@ void initialiser_peages(int N) {
         N--;
     }
   }
+
+    printf("\nLISTE DES PEAGES OUVERT");
+
   for (int i=0;i<NB_PDP;i++){printf("|%d",state_peage[i]);}
     printf("|\n");
 } 
@@ -67,6 +70,7 @@ void Voiture(int idVehicule){
     nb_voiture_attente[pdp_id]++;
     pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
     printf("La voiture %s (%d) de classe %d attend au peage %d\n",v.immatriculation,idVehicule, v.classe,pdp_id);
+    attente(v);
     pthread_cond_wait(&attente_voiture[pdp_id],&mutex[pdp_id]);//on attend le peage
     printf("La voiture %s (%d) passe au peage %d\n",v.immatriculation,idVehicule,pdp_id);
     nb_voiture_attente[pdp_id]--;
@@ -163,6 +167,35 @@ float moyenne_voit(){
         somme+=nb_voiture_attente[i];
     }
     return (float)somme/NB_PDP;
+}
+
+void attente(vehicule v){
+
+    int temps_attente=0;
+
+	switch (v.classe){
+		case 1://véhicule léger
+            temps_attente=rand()%2; //attend entre 0 ou 1 min
+			break;
+		case 2://véhicule intermédiaire
+            temps_attente=rand()%3+1; //attend entre 1 et 3 min
+			break;
+		case 3://poids lourds, autocars et autres véhicules à 2 essieux
+			temps_attente=rand()%4+2; //attend entre 2 et 5 min
+			break;
+		case 4://poids lourds et autres véhicules à 3 essieux et plus
+            temps_attente=rand()%5+2; //attend entre 2 et 6 min
+			break;
+		case 5://motos, sidecars et trikes
+            temps_attente=rand()%2; //attend entre 0 ou 1 min
+			break;
+	}
+
+    if(!v.telepeage){
+        temps_attente++; //vehicule sans telepeage attendent une minute de plus
+    }
+
+    sleep(temps_attente);
 }
 
 #pragma GCC diagnostic pop
