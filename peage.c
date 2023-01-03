@@ -14,6 +14,7 @@ pthread_cond_t attente_peage[NB_PDP], attente_voiture[NB_PDP];
 int nb_voiture_attente[NB_PDP];
 bool stop_thread=false;
 bool state_peage[NB_PDP];
+int benefice[NB_PDP];
 
 
 //fonction peage
@@ -73,6 +74,8 @@ void Voiture(int idVehicule){
     attente(v);
     pthread_cond_wait(&attente_voiture[pdp_id],&mutex[pdp_id]);//on attend le peage
     printf("La voiture %s (%d) passe au peage %d\n",v.immatriculation,idVehicule,pdp_id);
+    benefice[pdp_id]+=v.prix_ticket;
+     printf("BENEFICE SUR LA VOIX %d = %d\n",pdp_id,benefice[pdp_id]);
     nb_voiture_attente[pdp_id]--;
     sleep(1);
     pthread_mutex_unlock(&mutex[pdp_id]);

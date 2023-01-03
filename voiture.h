@@ -15,6 +15,7 @@ typedef  struct vehicules { // Structure de base d'un véhicule
 	char immatriculation[9];
 	bool critair;
 	bool taxi;
+	int prix_ticket;
 }vehicule;
 
 
