@@ -1,0 +1,258 @@
+
+LISTE DES PEAGES OUVERT|1|0|1|1|1|1|1|1|0|1|0|1|0|0|1|
+Le peage 0 attend une voiture
+Le peage 1 attend une voiture
+Le peage 2 attend une voiture
+Le peage 3 attend une voiture
+Le peage 4 attend une voiture
+Le peage 5 attend une voiture
+Le peage 6 attend une voiture
+Le peage 7 attend une voiture
+Le peage 8 attend une voiture
+Le peage 9 attend une voiture
+Le peage 10 attend une voiture
+Le peage 11 attend une voiture
+Le peage 12 attend une voiture
+Le peage 13 attend une voiture
+Le peage 14 attend une voiture
+La voiture YA-OOU-ZO (0) de classe 3 (telepeage=1) attend au peage 7
+La voiture ZY-ZRE-UE (1) de classe 4 (telepeage=1) attend au peage 4
+La voiture RE-TYI-EE (2) de classe 1 (telepeage=0) attend au peage 3
+La voiture IE-EOU-YR (3) de classe 2 (telepeage=1) attend au peage 3
+La voiture AY-YRI-IU (4) de classe 3 (telepeage=1) attend au peage 14
+La voiture ZA-TUI-OR (5) de classe 1 (telepeage=1) attend au peage 11
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture ZA-TUI-OR (5) passe au peage 11
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+Le peage 11 attend une voiture
+La voiture UU-YAA-AY (6) de classe 1 (telepeage=0) attend au peage 7
+La voiture UI-UTI-TO (7) de classe 1 (telepeage=0) attend au peage 2
+La voiture RE-TYI-EE (2) passe au peage 3
+Le peage 4 dit a une voiture de venir
+La voiture passe au peage 4
+Le peage 7 dit a une voiture de venir
+La voiture passe au peage 7
+Le peage 14 dit a une voiture de venir
+La voiture passe au peage 14
+La voiture AT-OEU-EI (8) de classe 2 (telepeage=0) attend au peage 3
+La voiture UE-UYU-IT (9) de classe 3 (telepeage=0) attend au peage 2
+La voiture UO-UYY-EA (10) de classe 4 (telepeage=1) attend au peage 11
+La voiture EA-TEO-OO (11) de classe 4 (telepeage=0) attend au peage 0
+La voiture ZY-ZRE-UE (1) passe au peage 4
+La voiture YA-OOU-ZO (0) passe au peage 7
+La voiture AY-YRI-IU (4) passe au peage 14
+Le peage 4 attend une voiture
+La voiture IT-REE-UY (12) de classe 2 (telepeage=1) attend au peage 7
+La voiture UR-IEU-YA (13) de classe 1 (telepeage=1) attend au peage 6
+La voiture ZT-IZT-AE (14) de classe 3 (telepeage=0) attend au peage 9
+Le peage 14 attend une voiture
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+La voiture UZ-TZE-UR (15) de classe 2 (telepeage=1) attend au peage 11
+La voiture IE-EOU-YR (3) passe au peage 3
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+Le peage 2 dit a une voiture de venir
+La voiture passe au peage 2
+Le peage 7 dit a une voiture de venir
+La voiture passe au peage 7
+La voiture AT-OEU-EI (8) passe au peage 3
+La voiture UR-IEU-YA (13) passe au peage 6
+La voiture AE-UYU-ER (16) de classe 1 (telepeage=1) attend au peage 9
+La voiture UI-UTI-TO (7) passe au peage 2
+La voiture UU-YAA-AY (6) passe au peage 7
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+Le peage 3 attend une voiture
+Le peage 6 attend une voiture
+Le peage 0 dit a une voiture de venir
+La voiture passe au peage 0
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+Le peage 2 dit a une voiture de venir
+La voiture passe au peage 2
+Le peage 7 dit a une voiture de venir
+La voiture passe au peage 7
+La voiture UO-UIT-EA (17) de classe 3 (telepeage=1) attend au peage 11
+La voiture EA-TEO-OO (11) passe au peage 0
+La voiture ZT-IZT-AE (14) passe au peage 9
+La voiture UE-UYU-IT (9) passe au peage 2
+La voiture IT-REE-UY (12) passe au peage 7
+La voiture UO-UYY-EA (10) passe au peage 11
+Le peage 0 attend une voiture
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture OZ-TAE-OE (18) de classe 4 (telepeage=1) attend au peage 7
+Le peage 2 attend une voiture
+La voiture OY-TZA-AR (19) de classe 3 (telepeage=1) attend au peage 14
+La voiture UO-EUT-AY (20) de classe 1 (telepeage=0) attend au peage 6
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture AE-UYU-ER (16) passe au peage 9
+La voiture OU-UIO-AI (21) de classe 1 (telepeage=0) attend au peage 6
+La voiture ZA-OUZ-RI (22) de classe 2 (telepeage=0) attend au peage 0
+La voiture IA-YTT-RO (23) de classe 1 (telepeage=1) attend au peage 4
+La voiture UZ-TZE-UR (15) passe au peage 11
+Le peage 9 attend une voiture
+Le peage 4 dit a une voiture de venir
+La voiture passe au peage 4
+Le peage 7 dit a une voiture de venir
+La voiture passe au peage 7
+La voiture YT-YTI-UA (24) de classe 4 (telepeage=1) attend au peage 11
+La voiture RO-IOT-II (25) de classe 4 (telepeage=1) attend au peage 2
+La voiture OA-OIT-YT (26) de classe 2 (telepeage=0) attend au peage 9
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+La voiture IA-YTT-RO (23) passe au peage 4
+La voiture YY-ZRE-EI (27) de classe 1 (telepeage=1) attend au peage 14
+La voiture OO-ZOT-OT (28) de classe 2 (telepeage=1) attend au peage 3
+La voiture OZ-TAE-OE (18) passe au peage 7
+La voiture UO-EUT-AY (20) passe au peage 6
+Le peage 4 attend une voiture
+Le peage 14 dit a une voiture de venir
+La voiture passe au peage 14
+Le peage 7 attend une voiture
+La voiture UE-ZIA-OO (29) de classe 2 (telepeage=0) attend au peage 6
+La voiture OY-TZA-AR (19) passe au peage 14
+Le peage 0 dit a une voiture de venir
+La voiture passe au peage 0
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+Le peage 14 dit a une voiture de venir
+La voiture passe au peage 14
+Le peage 2 dit a une voiture de venir
+La voiture passe au peage 2
+La voiture ZA-OUZ-RI (22) passe au peage 0
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+La voiture ZE-UAR-IT (30) de classe 1 (telepeage=1) attend au peage 11
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture OR-RZA-YZ (31) de classe 4 (telepeage=1) attend au peage 4
+La voiture YY-ZRE-EI (27) passe au peage 14
+La voiture RO-IOT-II (25) passe au peage 2
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+Le peage 0 attend une voiture
+La voiture OO-ZOT-OT (28) passe au peage 3
+La voiture UO-UIT-EA (17) passe au peage 11
+Le peage 14 attend une voiture
+La voiture OA-OIT-YT (26) passe au peage 9
+La voiture ZO-ITE-UO (32) de classe 1 (telepeage=1) attend au peage 2
+La voiture OU-UIO-AI (21) passe au peage 6
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+Le peage 3 attend une voiture
+Le peage 9 attend une voiture
+Le peage 2 dit a une voiture de venir
+La voiture passe au peage 2
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+La voiture OE-UZR-ZI (33) de classe 3 (telepeage=0) attend au peage 11
+La voiture ZO-ITE-UO (32) passe au peage 2
+La voiture UE-ZIA-OO (29) passe au peage 6
+Le peage 4 dit a une voiture de venir
+La voiture passe au peage 4
+Le peage 2 attend une voiture
+Le peage 6 attend une voiture
+La voiture OR-RZA-YZ (31) passe au peage 4
+La voiture YT-YTI-UA (24) passe au peage 11
+Le peage 4 attend une voiture
+La voiture OE-OYE-AY (34) de classe 1 (telepeage=1) attend au peage 11
+La voiture RE-UYZ-RY (35) de classe 1 (telepeage=1) attend au peage 9
+La voiture EI-AOU-TO (36) de classe 1 (telepeage=1) attend au peage 6
+La voiture IY-TUI-IA (37) de classe 4 (telepeage=0) attend au peage 6
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture TZ-AEY-ZZ (38) de classe 1 (telepeage=0) attend au peage 9
+La voiture EU-UTA-ET (39) de classe 1 (telepeage=0) attend au peage 11
+La voiture TR-YRT-RU (40) de classe 2 (telepeage=0) attend au peage 3
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture ZE-UAR-IT (30) passe au peage 11
+La voiture RE-UYZ-RY (35) passe au peage 9
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture YI-IUR-AU (41) de classe 2 (telepeage=0) attend au peage 6
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture OE-UZR-ZI (33) passe au peage 11
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+La voiture YR-EZA-AZ (42) de classe 4 (telepeage=1) attend au peage 9
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture TR-YRT-RU (40) passe au peage 3
+La voiture OE-OYE-AY (34) passe au peage 11
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+La voiture TU-UZR-OY (43) de classe 4 (telepeage=0) attend au peage 3
+La voiture TO-AET-ZY (44) de classe 3 (telepeage=1) attend au peage 2
+La voiture OI-YOA-IA (45) de classe 3 (telepeage=1) attend au peage 5
+Le peage 11 dit a une voiture de venir
+La voiture passe au peage 11
+La voiture EI-AOU-TO (36) passe au peage 6
+La voiture EU-UTA-ET (39) passe au peage 11
+La voiture TZ-AEY-ZZ (38) passe au peage 9
+Le peage 6 dit a une voiture de venir
+La voiture passe au peage 6
+Le peage 11 attend une voiture
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture IY-TUI-IA (37) passe au peage 6
+La voiture IR-RUO-EZ (46) de classe 3 (telepeage=0) attend au peage 9
+Le peage 6 dit a une voiture de venir
+La voiture RZ-IAU-UU (47) de classe 2 (telepeage=0) attend au peage 7
+La voiture passe au peage 6
+Le peage 2 dit a une voiture de venir
+La voiture passe au peage 2
+La voiture YI-IUR-AU (41) passe au peage 6
+La voiture TO-AET-ZY (44) passe au peage 2
+Le peage 5 dit a une voiture de venir
+La voiture passe au peage 5
+Le peage 6 attend une voiture
+Le peage 2 attend une voiture
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+La voiture OI-YOA-IA (45) passe au peage 5
+La voiture YR-ZYT-YY (48) de classe 2 (telepeage=0) attend au peage 3
+La voiture YA-OIU-ET (49) de classe 4 (telepeage=0) attend au peage 4
+Le peage 5 attend une voiture
+La voiture YR-EZA-AZ (42) passe au peage 9
+Le peage 7 dit a une voiture de venir
+La voiture passe au peage 7
+Le peage 9 dit a une voiture de venir
+La voiture passe au peage 9
+La voiture RZ-IAU-UU (47) passe au peage 7
+La voiture TU-UZR-OY (43) passe au peage 3
+La voiture IR-RUO-EZ (46) passe au peage 9
+Le peage 7 attend une voiture
+Le peage 4 dit a une voiture de venir
+La voiture passe au peage 4
+Le peage 3 dit a une voiture de venir
+La voiture passe au peage 3
+Le peage 9 attend une voiture
+La voiture YA-OIU-ET (49) passe au peage 4
+La voiture YR-ZYT-YY (48) passe au peage 3
+Le peage 4 attend une voiture
+Le peage 3 attend une voiture
+BENEFICE SUR LA VOIE 0 = 10
+BENEFICE SUR LA VOIE 1 = 0
+BENEFICE SUR LA VOIE 2 = 13
+BENEFICE SUR LA VOIE 3 = 27
+BENEFICE SUR LA VOIE 4 = 20
+BENEFICE SUR LA VOIE 5 = 5
+BENEFICE SUR LA VOIE 6 = 35
+BENEFICE SUR LA VOIE 7 = 25
+BENEFICE SUR LA VOIE 8 = 0
+BENEFICE SUR LA VOIE 9 = 35
+BENEFICE SUR LA VOIE 10 = 0
+BENEFICE SUR LA VOIE 11 = 45
+BENEFICE SUR LA VOIE 12 = 0
+BENEFICE SUR LA VOIE 13 = 0
+BENEFICE SUR LA VOIE 14 = 15
+Bonne terminaison
