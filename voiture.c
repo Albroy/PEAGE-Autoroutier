@@ -53,7 +53,7 @@ vehicule creer_vehicule(int classe){
 		v.telepeage=false;
 	}
 
-	if(telepeage){
+	if(v.telepeage){
 		v.prix_ticket=1;
 	}else{
 		v.prix_ticket=5;
