@@ -90,7 +90,7 @@ void *fct_peage(void * id){
         sleep(1);
         running=!stop_thread;
     }    
-    printf("BENEFICE SUR LA VOIE %d = %d\n",id,benefice[id]);
+    printf("BENEFICE SUR LA VOIE %d = %d\n",(int)id,benefice[(int)id]);
     pthread_exit(NULL);
 }
 
