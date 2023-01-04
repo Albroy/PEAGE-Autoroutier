@@ -69,17 +69,20 @@ void Voiture(int idVehicule){
     //afficher_vehicule(v);
     pthread_mutex_lock(&mutex[pdp_id]);
     nb_voiture_attente[pdp_id]++;
+    printf("nb voiture %d\n",nb_voiture_attente[pdp_id]);
+pthread_mutex_unlock(&mutex[pdp_id]);
     pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
     printf("La voiture %s (%d) de classe %d (telepeage=%d) attend au peage %d\n",v.immatriculation,idVehicule, v.classe,v.telepeage,pdp_id);
     attente(v);
     pthread_cond_wait(&attente_voiture[pdp_id],&mutex[pdp_id]);//on attend le peage
     printf("La voiture %s (%d) passe au peage %d\n",v.immatriculation,idVehicule,pdp_id);
-    
+pthread_mutex_lock(&mutex[pdp_id]);
     if(v.telepeage && pdp_id <= NB_TEL){
         benefice[pdp_id]+=1; 
     }else{
         benefice[pdp_id]+=5;
     }
+
     nb_voiture_attente[pdp_id]--;
     sleep(1);
     pthread_mutex_unlock(&mutex[pdp_id]);
@@ -174,6 +177,7 @@ float moyenne_voit(){
     for(int i=0;i<NB_PDP;i++){
         somme+=nb_voiture_attente[i];
     }
+    printf("Somme %d\n",somme);
     return (float)somme/NB_PDP;
 }
 
