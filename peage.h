@@ -10,7 +10,7 @@
 #include "voiture.h"
 
 
-#define NB_PDP 15// nb de postes de péage
+#define NB_PDP 3// nb de postes de péage
 #define NB_TEL NB_PDP/4// nb de télépeage
 
 extern bool stop_thread;
