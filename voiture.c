@@ -52,13 +52,7 @@ vehicule creer_vehicule(int classe){
 	else{
 		v.telepeage=false;
 	}
-
-	if(v.telepeage){
-		v.prix_ticket=1;
-	}else{
-		v.prix_ticket=5;
-	}
-
+	
 	return v;
 }
 void afficher_vehicule(vehicule v){
