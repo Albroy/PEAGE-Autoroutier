@@ -13,7 +13,7 @@
 - [Nicolas Marcelin](https://github.com/nic0c0)
 - [Albert Royer](https://github.com/Rarynn)
 
-### Sujets
+### Sujet
 
     Le but du sujet est de simuler un péage autoroutier à l'aide des librairies C de linux (IPC/POSIX).
 
