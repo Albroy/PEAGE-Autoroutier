@@ -15,9 +15,7 @@
 
 ### Sujets
 
-The aim is to made a drone delivery system simulation with C libraries from Linux (System V and POSIX).
-
-A mothership send drones to deliver packages to clients within the delivery range.
+    Le but du sujet est de simuler un péage autoroutier à l'aide des librairies C de linux (IPC/POSIX).
 
 ## Compilation
 
@@ -33,7 +31,7 @@ Pour compiler le programme, il suffit d'utiliser la commande suivante:
 Pour lancer l'executable "normale", il suffit de faire la commande suivante:
 
 	$ ./exec/main
-    
+
 
 ## Copyright
 
