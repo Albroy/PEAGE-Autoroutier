@@ -64,17 +64,15 @@ void initialiser_peages(int N) {
 
 //fonction voiture
 void Voiture(int idVehicule){
-    pthread_mutex_lock(&sommemutex);
-
     vehicule v=creer_vehicule(rand()%4+1);
+    pthread_mutex_lock(&sommemutex);
     int pdp_id=choix_pdp(v);
     //afficher_vehicule(v);
-    
     pthread_mutex_lock(&mutex[pdp_id]);    
     nb_voiture_attente[pdp_id]++;
     pthread_mutex_unlock(&sommemutex);
 
-    printf("nombre de voiture au peage %d -> %d \n",pdp_id,nb_voiture_attente[pdp_id]);
+    //printf("nombre de voiture au peage %d -> %d \n",pdp_id,nb_voiture_attente[pdp_id]);
     pthread_cond_signal(&attente_peage[pdp_id]);//on reveille le peage
     printf("La voiture %s (%d) de classe %d (telepeage=%d) attend au peage %d\n",v.immatriculation,idVehicule, v.classe,v.telepeage,pdp_id);
     attente(v);
@@ -124,7 +122,7 @@ int choix_pdp(vehicule v){
         peage=rand()%NB_PDP;
     }
 
-    bool hdp=moyenne_voit()>NB_PDP/2;
+    bool hdp=moyenne_voit()>NB_PDP/3;
 
     if(hdp){
         printf("HEURE DE POINTE\n");
@@ -183,7 +181,7 @@ float moyenne_voit(){
     for(int i=0;i<NB_PDP;i++){
         somme+=nb_voiture_attente[i];
     }
-    printf("Somme %d\n",somme);
+    //printf("Somme %d\n",somme);
 
     return (float)somme/NB_PDP;
 }
