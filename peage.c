@@ -155,13 +155,16 @@ int choix_pdp(vehicule v){
     
 
 
-    while(!bool1 && !bool2){
+    while(!bool1 || !bool2 || !state_peage[peage] || peage ==0){//erreur de condition
         peage=rand()%NB_PDP;
 
         if (NB_TEL+peage < NB_PDP){
             bool1 = true;
             if(state_peage[peage+NB_TEL]){
                 bool2 = true;
+            }else{//erreur de condition
+                bool1 = false;
+                bool2 = false;
             }
         }
 
